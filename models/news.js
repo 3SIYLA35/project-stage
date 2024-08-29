@@ -17,8 +17,8 @@ const newsSchema= new Schema({
     auteur:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        ref:'employee'
-    },
+        ref:'HR'
+    },  
     Datepublished:{
         type:Date,
         required:true,

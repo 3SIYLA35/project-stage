@@ -24,8 +24,7 @@ const VactionSchema=new Schema({
     },
     status:{
         type:String,
-        enum:['Pending','Approved','Rejected'],
-        required:true 
+        enum:['Pending','Approved','Rejected'], 
     },
     reviewedBy:{
         type:mongoose.Schema.Types.ObjectId,

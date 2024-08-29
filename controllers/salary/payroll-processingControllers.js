@@ -15,13 +15,14 @@ exports.createPayroll=async (req,res)=>{
         if(!salarystructure){
             res.status(500).json({msg:'salary structure not found'})
         };
+        console.log(employee._id);
         const grossSalary=calculategrossSalary(salarystructure);
         console.log(grossSalary);
         const {netSalary,deductions,bonuses}=calculatenetsalary(grossSalary);
         console.log(calculatenetsalary(grossSalary))
         console.log(netSalary,deductions,bonuses);
         const payroll= new Payroll({
-            idemployee:employeeID,
+            idemployee:employee._id,
             salaryStructure:salarystructure._id,
             payPeriod:payPeriod,
             grossSalary:grossSalary,

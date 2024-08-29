@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema=mongoose.Schema;
 
 
-const employeeSchema=new Schema({
+const HRschema=new Schema({
     email:{
         type:String,
         required:true,
@@ -31,7 +31,7 @@ const employeeSchema=new Schema({
         trim:true
     },
     Role:{
-        type:Number,
+        type:String,
         enum:["recruiter",'HR Manager',"Payroll Specialist","Genaralist"],
         required:true
     },
@@ -48,11 +48,11 @@ const employeeSchema=new Schema({
         lowercase:true
     },
     phone:{
-        type:Number,
+        type:String,
         maxlength:10,
         validate:{
             validator:function(value){
-                return /^\d{10}$/.test(value.toString());
+                return /^0\d{9}$/.test(value);
             },
             message:"phone number must be 10 digits"
         },
@@ -78,4 +78,4 @@ const employeeSchema=new Schema({
 
 
 
-module.exports=mongoose.model('HR',HRSchema);
+module.exports=mongoose.model('HR',HRschema);

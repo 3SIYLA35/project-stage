@@ -6,13 +6,14 @@ const PaySlip=require('../../models/HR tasks/salary/Pay-slip-generation');
 exports.createpayslip=async (req,res)=>{
     try{
         const {employeeID}=req.body;
-        const payroll =await Payroll.findById(employeeID).populate('idemployee');
+        const payroll =await Payroll.findOne({idemployee:employeeID}).populate('idemployee');
+        console.log(employeeID);
         console.log(payroll)
         if(!payroll){
             res.status(500).json({msg:'payroll ont found '})
         };
         const payslip=new PaySlip({
-            idemployee:payroll.idemployee,
+            idemployee:employeeID,
             payroll:payroll._id,
             payPeriod:payroll.payPeriod,
             details:{
@@ -34,52 +35,61 @@ exports.createpayslip=async (req,res)=>{
 
 }
 
-exports.updatepayrollprocessing=async (req,res)=>{
+exports.updatepayslip=async (req,res)=>{
 
     try{
 
         const {id}=req.params;
-        const {payPeriod,grossSalary,netSalary,deductions,bonuses,status}=req.body;
-        const payroll=await SalaryStructure.findOne({idemployee:id});
-        if(!payroll){
-            res.status(500).json({msg:"couldn't find payroll with id "});
-            console.log(payroll);
-        }
-        const updatepayroll=await Payroll.findOneAndUpdate(
+        const {payroll,payPeriod,deductions,basesalary,allowances,tax,netsalary,bonuses}=req.body;
+        const payslip=await Payroll.findOne({idemployee:id});
+        if(!payslip){
+            res.status(500).json({msg:"couldn't find payslip with id "});
+            console.log(payslip);
+        };
+        const updatepayslip={}
+        if(payroll!==undefined) {updatepayslip["details.payroll"]=payroll};
+        if(payPeriod!==undefined){updatepayslip["details.payPeriod"]=payPeriod};
+        if(deductions!==undefined){updatepayslip["details.deductions"]=deductions};
+        if(basesalary!==undefined){updatepayslip["details.basesalary"]=basesalary};
+        if(allowances!==undefined){updatepayslip["details.allowances"]=allowances};
+        if(tax!==undefined){updatepayslip["details.tax"]=tax};
+        if(netsalary!==undefined){updatepayslip["details.netsalary"]=netsalary};
+        if(bonuses!==undefined){updatepayslip["details.bonuses"]=bonuses};
+        const updatedpayslip=await PaySlip.findOneAndUpdate(
             {idemployee:id},
-            {$set:{payPeriod,grossSalary,netSalary,deductions,bonuses,status}},
+            {$set:updatepayslip},
             {new:true,runvalidators:true});
-        res.status(200).json({msg:"payroll processiing  updated successfully"});
+        res.status(200).json({msg:"paysilp generation updated successfully"});
     }catch(error){
         console.log(error);
-        res.status(404).json({msg:"failed to update  payroll processing "});
+        res.status(404).json({msg:"failed to update  payslip processing "});
     }
 }
 
-exports.getpayrollwithid=async(req,res)=>{
+exports.getpayslip=async(req,res)=>{
     try{
         const {id}=req.params;
-        const payroll=await SalaryStructure.findOne({idemployee:id})
-        res.status(200).json({payroll});
-        console.log(payroll);
+        const payslip=await PaySlip.findOne({idemployee:id})
+        res.status(200).json({payslip});
+        console.log(payslip);
     }catch(error){
         console.log(error);
-        res.status(404).json({msg:"failed to get payroll withid"});
+        res.status(404).json({msg:"failed to get payslip withid"});
 
     }
 }
 
-exports.getallpayrollprocessing=async(req,res)=>{
+exports.getallpayslip=async(req,res)=>{
     try{
-        await SalaryStructure.find().then((payroll)=>{
-            res.status(200).json(payroll);
+        await PaySlip.find().then((payslip)=>{
+            res.status(200).json(payslip);
         }).catch((error)=>{
             console.log(error);
-            res.status(404).json({msg:"failed to get all payroll"});
+            res.status(404).json({msg:"failed to get all payslip"});
         })
     }catch(error){
         console.log(error);
-        res.status(404).json({msg:"failed to get all payroll"});
+        res.status(404).json({msg:"failed to get all payslip"});
     }
 }
 

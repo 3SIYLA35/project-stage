@@ -37,25 +37,13 @@ const paySlipSchema=new Schema({
             required:true
         },
         bonuses:[{
-            type:{
-                type:String,
-                required:true
-            },
-            amount:{
-                type:Number,
-                required:true
-            }
-        }],
-        deductions:[{
-            type:{
-                type:String,
-                required:true
-            },
-            amount:{
-                type:Number,
-                required:true
-            }
-        }]
+            description:{type:String,required:true},
+            amount:{type:Number,required:true} 
+            }],
+        deductions:[{ 
+            description:{type:String,required:true},
+            amount:{type:Number,required:true}
+            }]
     }
 });
 

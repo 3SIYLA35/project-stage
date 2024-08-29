@@ -18,6 +18,9 @@ app.use('/attendance',require('./routes/attedance'));
 app.use('/salary',require('./routes/salary/structure-salary'));
 app.use('/salary',require('./routes/salary/payroll-processing'));
 app.use('/salary',require('./routes/salary/pay-slip-generation'));
+app.use('/vaction',require('./routes/vaction'));
+app.use('/news',require('./routes/news'));
+app.use('/HR',require('./routes/HR'));
 
 app.get('*',(req,res)=>{
     res.status(404).send('404');
