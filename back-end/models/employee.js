@@ -30,11 +30,6 @@ const employeeSchema=new Schema({
         minlength:8,
         trim:true
     },
-    idemployee:{
-        type:Number,
-        unique:true,
-        required:false
-    },
     fullname:{
         type:String,
         maxlength:30,

@@ -7,8 +7,13 @@ exports.CheckIN=async (req,res)=>{
 
     try{
 
-        const {employeeID,status}=req.body;
-        //employee exists
+        const {status}=req.body;
+        const employeeID=req.session.employeeID
+        console.log("Session ID:",employeeID)
+        if(!employeeID){
+            return res.status(400).json({ msg: 'employee ID is required' });
+            }
+       
         const Employee= await employee.findById(employeeID);
         const currentdate=new Date().setHours(0,0,0,0);
         if(!Employee && status!='Present'){
@@ -35,7 +40,7 @@ exports.CheckIN=async (req,res)=>{
             })
             await attendance.save();
             console.log(attendance)
-            res.status(200).json({msg:'check-in successfully'});
+            res.status(200).json({msg:`check-in successfully ${req.session.employeeID}`});
         }
         
         
@@ -48,10 +53,20 @@ exports.CheckIN=async (req,res)=>{
 
 //check-Out
 exports.CheckOut=async (req,res)=>{
+    console.log("Session ID:", req.session.employeeID); // Log the session ID
+    if(!employeeID){
+        return res.status(400).json({ msg: 'employee ID is required' });
+        }
 
     try{
 
-        const {employeeID,status}=req.body;
+        const {status}=req.body;
+        const employeeID = req.session.employeeID;
+        if(!employeeID){
+        return res.status(400).json({ msg: 'employee ID is required' });
+        }
+
+
         //employee exists
         const Employee= await employee.findById(employeeID);
         const currentdate=new Date().setHours(0,0,0,0);
@@ -85,7 +100,7 @@ exports.CheckOut=async (req,res)=>{
             console.log(existingcheckIndate)
            
             await existingcheckIndate.save();
-            res.status(200).json({msg:'check-Out successfully'});
+            res.status(200).json({msg:`check-Out successfully ${req.session.employeeID}`});
         }
         
         

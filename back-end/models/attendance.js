@@ -8,7 +8,7 @@ const attendanceSchema=new Schema({
    idemployee:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'employee',
-        required:true
+        required:false
     },
     checkIn:[{
         checkInTime:{ 

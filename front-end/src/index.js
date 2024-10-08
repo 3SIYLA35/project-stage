@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginEmployee from './login/loginEmployee';
+import Sidebar from "./intefaceUser/sidebare"
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- <LoginEmployee   />
+//  <LoginEmployee   />
+<Sidebar />
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,7 @@
 const express=require('express');
 const employee=require('../models/employee');
+const session = require('express-session');
+
 
 exports.logingEmployee =async (req, res) => {
     const {email, password}=req.body;
@@ -11,9 +13,19 @@ exports.logingEmployee =async (req, res) => {
         if (Employee.password!==password) 
             return res.status(400).send('Invalid credentials');
 
-        res.send('Logged in successfully');
+        req.session.employeeID = Employee._id;
+        res.send(`Logged in successfully. Session ID: ${req.session.employeeID}`);
     }catch(error) {
         res.status(500).send('Server error');
+        console.error(error.message);
+    }
+};
+//bach njib idemployee mn session 
+exports.getemployeeID=(req,res) => {
+    if (req.session.employeeID){
+        res.json({employeeID:req.session.employeeID });
+    } else {
+        res.status(401).json({message:'Not logged in'});
     }
 };
 
@@ -47,10 +59,14 @@ exports.updateemployee=async(req,res)=>{
 exports.createnewemployee=async(req,res)=>{
     try{
 
-        const {email,password}=req.body; 
+        const {email,password}=req.body;
+        const existingEmployee =await employee.findOne({email});
+        if (existingEmployee){
+            return res.status(400).json({ msg: "employee with this email already exists" });
+        } 
        
         const Employee=new employee({
-            email,
+            email,  
             password
         });
         await Employee.save();

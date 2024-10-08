@@ -14,6 +14,13 @@ const connectDB=require('./config/db');
 connectDB();
 
 app.use(cors());
+const session = require('express-session');
+app.use(session({
+    secret: process.env.SESSION_SECRET, 
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } 
+}));
 
 app.use('/api',require('./routes/employee'));
 app.use('/attendance',require('./routes/attedance'));
