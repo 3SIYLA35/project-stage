@@ -19,13 +19,11 @@
   margin: 0;
 }
 
-body {
+html,body {
   font-family: "Gill Sans", sans-serif;;
   font-size: var(--normal-font-size);
   background-color: rgb(234, 238, 253);
-  color: var(--text-color);
-  transition: background-color .4s;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto
 }
 
@@ -59,19 +57,19 @@ button {
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container{
   margin: 0%;
-  position: fixed;
+  position: ;
   width: 77%;
     top: 14%;
   left: 24%;
   border-radius: 10px;
   background-color: #fafafaef;
   box-shadow:5px 5px 14px 0 rgb(32, 32, 32);
-  height: 100vh;
   font-family: "Gill Sans", sans-serif;
+  flex-grow: 1;
+  overflow-y: auto;
+  
 }
-.container-1{
-  height: 100vh;
-}
+
 .container h1{
     margin: 2%;
     width: auto;
@@ -79,7 +77,9 @@ button {
     top: 0%;
     left: 0%;
     font-weight: bold;
-}
+    overflow-y: auto; /* Ensure scrolling */
+    min-height: 90vh;}
+    
 
    
 

@@ -1,6 +1,7 @@
 import perfilImage from './style/perfil.png';
 import Getemployee from './getemployee'
 import './style/style.css'
+import Employee from './tasks/employeemanagement'
 export default function Sidebar(){
 
 
@@ -45,17 +46,17 @@ export default function Sidebar(){
                   <div class="sidebar__list">
                      <a href="#" class="sidebar__link active-link">
                         <i class="ri-pie-chart-2-fill"></i>
-                        <span>News</span>
+                        <span>Employee Management</span>
                      </a>
                      
                      <a href="#" class="sidebar__link">
                         <i class="ri-wallet-3-fill"></i>
-                        <span>Attendance</span>
+                        <span>Performance & Review</span>
                      </a>
 
                      <a href="#" class="sidebar__link">
                         <i class="ri-calendar-fill"></i>
-                        <span>Salary</span>
+                        <span>Employee Requests</span>
                      </a>
 
                      <a href="#" class="sidebar__link">
@@ -108,9 +109,10 @@ export default function Sidebar(){
       </nav>
 
       {/* <!--=============== MAIN ===============--> */}
-      <main class="main container" id="main">
-         <h1>Sidebar Menu</h1>
-         <Getemployee />
+      <main class="main container " id="main">
+         
+         {/* <Getemployee /> */}
+         <Employee />
       </main>
 {/*       
       <!--=============== MAIN JS ===============--> */}

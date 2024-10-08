@@ -1,16 +1,19 @@
-/* Table Responsive Style */
 .table-responsive {
-   width: 96%;
-   height: 100vh;
-   background-color: red;
-   position: absolute;
-   top: 18%;
+   width: 75%;
+   
+    height: calc(100vh - 30%); 
+    overflow-y: auto;
+
+
+   position: fixed;
+   top: 27%;
    overflow-x: auto;
    overflow-y: auto;
 }
 table{
     width: 100%;
     table-layout: auto;   
+    height: auto;
 }
 /* .content-table {
     margin: 10px 5px;
@@ -20,13 +23,12 @@ table{
 } */
 
 .content-table thead tr {
-    background-color: #8e9800;
     color: #000000;
     text-align: center;
-    font-weight: bold;height: auto;
+    font-weight: bold;height: auto;height: auto;
 }
 
-.content-table img{
+.content-table img,img{
     position: relative;
   width: 80px;
   height: 80px;
@@ -35,27 +37,127 @@ table{
   display: block;
   margin: 0 auto ;
 }
- tbody{
-    width: 100%;
+ tbody tr{
+    width: 100%;height: auto;overflow-y: auto;
+    background-color: rgb(210, 218, 252);
    
  }
 
-.content-table th{
 
-    padding: 0.5%;;
+th{
+    background-color: rgb(169, 185, 250);
+
 }
-
-.content-table td{
-
-    padding: 0.5%;height:100vh
+.content-table th, .content-table td {
+    padding: 0.5%; /* Adds padding to cells */
+    height: auto; /* Allow cells to auto-adjust their height */
 }
 .content-table tbody tr {
     height: auto; /* Let the row adjust its height automatically */
 }
 
+.container-employe{
+    position: fixed;
+    top: 40%;
+}
+.search-container{
+    position: absolute;
+    top: 14%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.search-btn{
 
+    position: absolute;
+    top:23%;
+    right:6%;
+    margin: 0;
+    width: 38px;
+    border-radius: 10px;
+    background-color: #0538df;
+    
+}
+.search-input-btn{
+    width: 30%;
+    display: flex;
+    justify-content: ;
+    height: 78px;
+    align-items: center;
+    left:52%;
+    position: relative;
+}
+.search-input-btn input{
+    height: 45px;
+    border-radius: 10px;
+    position: relative;
+    top: 19px;
+    width: 50%;
+    left: 50px;
+    background-color: white;
+    
+}
+/* .search-input-btn  */
+.search-btn i{
+    position: relative;
+    
+    color: white;
+    left: 4px;
+}
 
-
-
-
-
+.search-input-btn label{
+    font-size: 16px;
+    position: relative;
+    bottom: 15px;
+    left:17px ;
+}
+.select-department{
+    position: relative;
+    width: 20%;
+    height: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left:25px;
+}
+.select-department select{
+    height: 45px;
+    border-radius: 10px;
+    
+}
+.select-department label{
+    font-size: 16px;
+    position: relative;
+    bottom: 15px;
+    right:12px ;
+}
+.select-status{
+    position: relative;
+    width: 20%;
+    height: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right:400px;
+}
+.select-status select{
+    height: 45px;
+    border-radius: 10px;
+    position: relative;
+    left: 8%;
+    margin: 0;
+    
+}
+.select-status label{
+    font-size: 16px;
+    position: relative;
+    bottom: 15px;
+    right:2px ;
+}
+.container-employe th{
+    width:35px;
+}

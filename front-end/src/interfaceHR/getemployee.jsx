@@ -190,6 +190,34 @@ export default function Getemployee(){
                            
                         
                         </tr>
+                        <tr class="">
+                          <td class="text-center">
+                          <img src={penfileimage} alt="image"/>
+                          </td>
+                          <td class="text-center">
+                            <span>Rachid aarag</span>
+                          </td>
+                          <td class="text-center">
+                          <span>rachidaraq108@gmail.com</span>
+
+                          </td>
+                          <td class="text-center">
+                          <span>responsable</span>
+
+                          </td>
+                          <td class="text-center">
+                          <span>Present</span>
+
+                          </td>
+                          <td class="text-center">
+                          <span>bank chaabi</span>
+                          </td>
+                         
+                          
+                          
+                           
+                        
+                        </tr>
 
 
 
